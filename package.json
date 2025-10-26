@@ -1,0 +1,16 @@
+{
+  "name": "pixi-dodge",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.1.12"
+  },
+  "dependencies": {
+    "pixi.js": "^8.14.0"
+  }
+}
