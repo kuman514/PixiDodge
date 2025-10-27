@@ -14,18 +14,6 @@ import { TitleScene } from '^/scenes/title';
   const sceneManager = new SceneManager();
   sceneManager.init(app);
 
-  // Temporary assets
-  await Assets.load([
-    {
-      alias: 'koishi',
-      src: 'https://pbs.twimg.com/profile_images/1175746616545857538/JuT5t8dm.jpg',
-    },
-    {
-      alias: 'hoshino',
-      src: 'https://static.wikitide.net/bluearchivewiki/thumb/a/a9/Hoshino.png/266px-Hoshino.png',
-    },
-  ]);
-
   // Generate test scene
   sceneManager.changeScene(new TitleScene());
 
