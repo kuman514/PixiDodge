@@ -6,7 +6,8 @@ import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/shared/screen/constants';
   // App init
   const app = new Application();
   await app.init({
-    background: '#00ff00',
+    background: '#000000',
+    backgroundAlpha: 0,
     resizeTo: window,
   });
 
