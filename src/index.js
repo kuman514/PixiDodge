@@ -1,7 +1,7 @@
 import { Application, Assets } from 'pixi.js';
 
 import { SceneManager } from '^/core/scene/manager';
-import { TestScene, AnotherTestScene } from '^/scenes/test';
+import { TitleScene } from '^/scenes/title';
 
 (async () => {
   // App init
@@ -27,15 +27,7 @@ import { TestScene, AnotherTestScene } from '^/scenes/test';
   ]);
 
   // Generate test scene
-  setInterval(() => {
-    sceneManager.changeScene(new TestScene());
-  }, 1000);
-  setTimeout(() => {
-    sceneManager.changeScene(new AnotherTestScene());
-    setInterval(() => {
-      sceneManager.changeScene(new AnotherTestScene());
-    }, 1000);
-  }, 500);
+  sceneManager.changeScene(new TitleScene());
 
   document.querySelector('main').appendChild(app.canvas);
 })();
