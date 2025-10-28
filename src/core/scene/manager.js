@@ -13,6 +13,7 @@ export class SceneManager {
     }
 
     this.#app = null;
+    SceneManager._instance = this;
   }
 
   init(app) {
