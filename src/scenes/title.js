@@ -1,7 +1,6 @@
 import { Text } from 'pixi.js';
 
 import { BaseScene } from '^/core/scene/base';
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
 
 export class TitleScene extends BaseScene {
   constructor() {
