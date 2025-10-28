@@ -1,6 +1,7 @@
 import { Application } from 'pixi.js';
 
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
+import { InputManager } from '^/core/input/manager';
 
 // This should be unique in the app. Therefore, this class has the Singleton pattern.
 export class SceneManager {
@@ -67,5 +68,7 @@ export class SceneManager {
     if (this.#currentScene && this.#currentScene.onEnter) {
       this.#currentScene.onEnter();
     }
+
+    new InputManager().setKeyHandler(this.#currentScene);
   }
 }

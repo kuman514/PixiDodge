@@ -11,10 +11,9 @@ import { TitleScene } from '^/scenes/title';
     backgroundAlpha: 0,
     resizeTo: window,
   });
+
   const sceneManager = new SceneManager();
   sceneManager.init(app);
-
-  // Generate test scene
   sceneManager.changeScene(new TitleScene());
 
   document.querySelector('main').appendChild(app.canvas);

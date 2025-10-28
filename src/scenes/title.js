@@ -1,6 +1,8 @@
 import { Text } from 'pixi.js';
 
 import { BaseScene } from '^/core/scene/base';
+import { SceneManager } from '^/core/scene/manager';
+import { GameScene } from '^/scenes/game';
 
 export class TitleScene extends BaseScene {
   constructor() {
@@ -35,4 +37,14 @@ export class TitleScene extends BaseScene {
   onEnter() {}
 
   onExit() {}
+
+  onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter':
+        new SceneManager().changeScene(new GameScene());
+        break;
+    }
+  }
+
+  onKeyUp() {}
 }
