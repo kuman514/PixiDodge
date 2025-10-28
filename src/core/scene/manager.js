@@ -4,16 +4,18 @@ import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
 
 // This should be unique in the app. Therefore, this class has the Singleton pattern.
 export class SceneManager {
+  static #instance = null;
+
   #app = null;
   #currentScene = null;
 
   constructor() {
-    if (SceneManager._instance) {
-      return SceneManager._instance;
+    if (SceneManager.#instance) {
+      return SceneManager.#instance;
     }
 
     this.#app = null;
-    SceneManager._instance = this;
+    SceneManager.#instance = this;
   }
 
   init(app) {
