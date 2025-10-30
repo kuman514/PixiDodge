@@ -1,4 +1,5 @@
 import { BaseScene } from '^/core/scene/base';
+import { PlayerObject } from '^/objects/player';
 
 /**
  * @todo
@@ -8,6 +9,9 @@ import { BaseScene } from '^/core/scene/base';
 export class GameScene extends BaseScene {
   constructor() {
     super();
+
+    this.playerObject = new PlayerObject();
+    this.addChild(this.playerObject);
   }
 
   onEnter() {}
