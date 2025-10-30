@@ -13,6 +13,8 @@ export class PlayerObject extends BaseObject {
       collisionHeight: 2,
     });
 
+    this.movingSpeed = 4;
+
     const graphics = new Graphics().rect(0, 0, 8, 8).fill({
       color: 0x00ff00,
     });
@@ -23,5 +25,9 @@ export class PlayerObject extends BaseObject {
 
     this.addChild(graphics);
     this.addChild(innerGraphics);
+  }
+
+  move(x, y) {
+    super.move(x * this.movingSpeed, y * this.movingSpeed);
   }
 }
