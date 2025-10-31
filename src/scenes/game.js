@@ -2,6 +2,8 @@ import { Ticker } from 'pixi.js';
 
 import { BaseScene } from '^/core/scene/base';
 import { PlayerObject } from '^/objects/player';
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
+import { ProjectileObject } from '^/objects/projectile';
 
 /**
  * @todo
@@ -14,11 +16,27 @@ export class GameScene extends BaseScene {
 
     // [up, down, left, right]
     this.isPressed = [false, false, false, false];
-
     this.playerObject = new PlayerObject();
     this.addChild(this.playerObject);
 
+    this.projectileObjects = Array.from(
+      { length: SCREEN_WIDTH / 2 },
+      (_, i) => new ProjectileObject(2 * i + 1 - SCREEN_WIDTH / 2)
+    );
+    this.projectileObjects.forEach((projectile) => {
+      this.addChild(projectile);
+    });
+
     this.update = (timer) => {
+      // Projectile movement
+      this.projectileObjects.forEach((projectile) => {
+        projectile.move(0, timer.deltaTime);
+        if (projectile.y > SCREEN_HEIGHT / 2 + 50) {
+          projectile.resetRandom();
+        }
+      });
+
+      // Player movement
       let horizontalDirection =
         this.isPressed[2] !== this.isPressed[3]
           ? this.isPressed[2]
@@ -40,6 +58,8 @@ export class GameScene extends BaseScene {
       verticalDirection *= timer.deltaTime;
 
       this.playerObject.move(horizontalDirection, verticalDirection);
+
+      // Projectile collision
     };
 
     this.ticker = new Ticker();
