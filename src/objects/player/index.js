@@ -18,11 +18,11 @@ export class PlayerObject extends BaseObject {
 
     this.movingSpeed = 4;
 
-    const graphics = new Graphics().rect(0, 0, 8, 8).fill({
+    const graphics = new Graphics().rect(-4, -4, 8, 8).fill({
       color: 0x00ff00,
     });
 
-    const innerGraphics = new Graphics().rect(3, 3, 2, 2).fill({
+    const innerGraphics = new Graphics().rect(-1, -1, 2, 2).fill({
       color: 0x0066ff,
     });
 
