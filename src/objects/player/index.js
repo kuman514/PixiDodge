@@ -1,6 +1,7 @@
-import { BaseObject } from '^/core/object/base';
-
 import { Graphics } from 'pixi.js';
+
+import { BaseObject } from '^/core/object/base';
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
 
 export class PlayerObject extends BaseObject {
   constructor() {
@@ -11,6 +12,8 @@ export class PlayerObject extends BaseObject {
       initY: 120,
       collisionWidth: 2,
       collisionHeight: 2,
+      clampX: [-SCREEN_WIDTH / 2, SCREEN_WIDTH / 2],
+      clampY: [-SCREEN_HEIGHT / 2, SCREEN_HEIGHT / 2],
     });
 
     this.movingSpeed = 4;

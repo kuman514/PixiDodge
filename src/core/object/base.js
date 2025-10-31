@@ -1,5 +1,7 @@
 import { Container } from 'pixi.js';
 
+import { clamp } from '^/util/clamp';
+
 export class BaseObject extends Container {
   constructor({
     width,
@@ -8,6 +10,8 @@ export class BaseObject extends Container {
     initY,
     collisionWidth,
     collisionHeight,
+    clampX,
+    clampY,
   }) {
     super();
 
@@ -20,11 +24,30 @@ export class BaseObject extends Container {
 
     this.collisionWidth = collisionWidth;
     this.collisionHeight = collisionHeight;
+
+    this.clampX = clampX;
+    this.clampY = clampY;
   }
 
   move(dx, dy) {
-    this.x += dx;
-    this.y += dy;
+    if (this.clampX) {
+      this.x = clamp({
+        value: this.x + dx,
+        min: this.clampX[0],
+        max: this.clampX[1],
+      });
+    } else {
+      this.x += dx;
+    }
+    if (this.clampY) {
+      this.y = clamp({
+        value: this.y + dy,
+        min: this.clampY[0],
+        max: this.clampY[1],
+      });
+    } else {
+      this.y += dy;
+    }
   }
 
   setPosition(x, y) {
