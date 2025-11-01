@@ -15,6 +15,8 @@ export class GameScene extends BaseScene {
   constructor() {
     super();
 
+    this.score = 0;
+
     // [up, down, left, right]
     this.isPressed = [false, false, false, false];
     this.playerObject = new PlayerObject();
@@ -66,8 +68,12 @@ export class GameScene extends BaseScene {
       );
 
       if (isCollided) {
-        new SceneManager().changeScene(new GameOverScene());
+        new SceneManager().changeScene(
+          new GameOverScene(Math.floor(this.score))
+        );
       }
+
+      this.score += 10 * timer.deltaTime;
     };
 
     this.ticker = new Ticker();
@@ -140,7 +146,7 @@ export class GameScene extends BaseScene {
 }
 
 export class GameOverScene extends BaseScene {
-  constructor() {
+  constructor(finalScore) {
     super();
     const title = new Text({
       text: 'Game Over',
@@ -152,8 +158,21 @@ export class GameOverScene extends BaseScene {
         align: 'center',
       },
     });
-    title.y = -25;
+    title.y = -30;
     this.addChild(title);
+
+    const finalScoreText = new Text({
+      text: `Final score: ${finalScore} pts.`,
+      anchor: 0.5,
+      style: {
+        fontFamily: 'Arial',
+        fontSize: 18,
+        fill: 0xffffff,
+        align: 'center',
+      },
+    });
+    finalScoreText.y = 15;
+    this.addChild(finalScoreText);
 
     const instruction = new Text({
       text: 'Press enter to play again',
@@ -165,7 +184,7 @@ export class GameOverScene extends BaseScene {
         align: 'center',
       },
     });
-    instruction.y = 25;
+    instruction.y = 50;
     this.addChild(instruction);
   }
 
