@@ -104,6 +104,9 @@ export class GameScene extends BaseScene {
       case 'd':
         this.isPressed[3] = true;
         break;
+      case 'Shift':
+        this.playerObject.movingSpeed = 2;
+        break;
     }
   }
 
@@ -128,6 +131,9 @@ export class GameScene extends BaseScene {
       case 'D':
       case 'd':
         this.isPressed[3] = false;
+        break;
+      case 'Shift':
+        this.playerObject.movingSpeed = 4;
         break;
     }
   }
