@@ -1,8 +1,8 @@
 import { Ticker } from 'pixi.js';
 
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '^/constants';
 import { BaseScene } from '^/core/scene/base';
 import { PlayerObject } from '^/objects/player';
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
 import { ProjectileObject } from '^/objects/projectile';
 
 /**
@@ -60,6 +60,17 @@ export class GameScene extends BaseScene {
       this.playerObject.move(horizontalDirection, verticalDirection);
 
       // Projectile collision
+      const isCollided = this.projectileObjects.some((projectile) =>
+        projectile.isCollidingWith(this.playerObject)
+      );
+
+      if (isCollided) {
+        /**
+         * @todo
+         * Move to game-over screen or show game-over layer
+         */
+        this.ticker?.stop();
+      }
     };
 
     this.ticker = new Ticker();
