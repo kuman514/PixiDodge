@@ -1,9 +1,10 @@
-import { Ticker } from 'pixi.js';
+import { Ticker, Text } from 'pixi.js';
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '^/constants';
 import { BaseScene } from '^/core/scene/base';
 import { PlayerObject } from '^/objects/player';
 import { ProjectileObject } from '^/objects/projectile';
+import { SceneManager } from '^/core/scene/manager';
 
 /**
  * @todo
@@ -65,11 +66,7 @@ export class GameScene extends BaseScene {
       );
 
       if (isCollided) {
-        /**
-         * @todo
-         * Move to game-over screen or show game-over layer
-         */
-        this.ticker?.stop();
+        new SceneManager().changeScene(new GameOverScene());
       }
     };
 
@@ -86,7 +83,6 @@ export class GameScene extends BaseScene {
   }
 
   onKeyDown(event) {
-    // console.log('keydown', event.key);
     switch (event.key) {
       case 'ArrowUp':
       case 'W':
@@ -112,7 +108,6 @@ export class GameScene extends BaseScene {
   }
 
   onKeyUp(event) {
-    // console.log('keyup', event.key);
     switch (event.key) {
       case 'ArrowUp':
       case 'W':
@@ -136,4 +131,49 @@ export class GameScene extends BaseScene {
         break;
     }
   }
+}
+
+export class GameOverScene extends BaseScene {
+  constructor() {
+    super();
+    const title = new Text({
+      text: 'Game Over',
+      anchor: 0.5,
+      style: {
+        fontFamily: 'Arial',
+        fontSize: 24,
+        fill: 0xffffff,
+        align: 'center',
+      },
+    });
+    title.y = -25;
+    this.addChild(title);
+
+    const instruction = new Text({
+      text: 'Press enter to play again',
+      anchor: 0.5,
+      style: {
+        fontFamily: 'Arial',
+        fontSize: 18,
+        fill: 0xffffff,
+        align: 'center',
+      },
+    });
+    instruction.y = 25;
+    this.addChild(instruction);
+  }
+
+  onEnter() {}
+
+  onExit() {}
+
+  onKeyDown(event) {
+    switch (event.key) {
+      case 'Enter':
+        new SceneManager().changeScene(new GameScene());
+        break;
+    }
+  }
+
+  onKeyUp() {}
 }
