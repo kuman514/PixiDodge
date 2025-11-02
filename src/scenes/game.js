@@ -16,6 +16,21 @@ export class GameScene extends BaseScene {
     super();
 
     this.score = 0;
+    const scoreRender = new Text({
+      text: '0',
+      anchor: {
+        x: 1,
+        y: 0,
+      },
+      style: {
+        fontFamily: 'Arial',
+        fontSize: 18,
+        fill: 0xffffff,
+        align: 'right',
+      },
+      x: SCREEN_WIDTH / 2,
+      y: -SCREEN_HEIGHT / 2,
+    });
 
     // [up, down, left, right]
     this.isPressed = [false, false, false, false];
@@ -29,6 +44,7 @@ export class GameScene extends BaseScene {
     this.projectileObjects.forEach((projectile) => {
       this.addChild(projectile);
     });
+    this.addChild(scoreRender);
 
     this.update = (timer) => {
       // Projectile movement
@@ -74,6 +90,7 @@ export class GameScene extends BaseScene {
       }
 
       this.score += 10 * timer.deltaTime;
+      scoreRender.text = Math.floor(this.score);
     };
 
     this.ticker = new Ticker();
