@@ -1,6 +1,6 @@
 import { Container } from 'pixi.js';
 
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '^/constants';
 
 export class BaseScene extends Container {
   constructor() {

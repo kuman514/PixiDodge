@@ -1,10 +1,10 @@
-import { Ticker, Text } from 'pixi.js';
+import { Text, Ticker } from 'pixi.js';
 
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '^/constants';
 import { BaseScene } from '^/core/scene/base';
+import { SceneManager } from '^/core/scene/manager';
 import { PlayerObject } from '^/objects/player';
 import { ProjectileObject } from '^/objects/projectile';
-import { SceneManager } from '^/core/scene/manager';
 
 /**
  * @todo
