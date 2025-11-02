@@ -1,7 +1,7 @@
 import { Graphics } from 'pixi.js';
 
-import { BaseObject } from '^/core/object/base';
 import { SCREEN_HEIGHT } from '^/constants';
+import { BaseObject } from '^/core/object/base';
 
 export class ProjectileObject extends BaseObject {
   constructor(spawnX) {

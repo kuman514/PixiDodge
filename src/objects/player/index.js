@@ -1,7 +1,7 @@
 import { Graphics } from 'pixi.js';
 
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '^/constants';
 import { BaseObject } from '^/core/object/base';
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
 
 export class PlayerObject extends BaseObject {
   constructor() {

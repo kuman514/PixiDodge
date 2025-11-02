@@ -1,6 +1,6 @@
 import { Application } from 'pixi.js';
 
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from '^/constants';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '^/constants';
 import { InputManager } from '^/core/input/manager';
 
 // This should be unique in the app. Therefore, this class has the Singleton pattern.

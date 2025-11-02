@@ -1,4 +1,4 @@
-import { Application, Assets } from 'pixi.js';
+import { Application } from 'pixi.js';
 
 import { SceneManager } from '^/core/scene/manager';
 import { TitleScene } from '^/scenes/title';
