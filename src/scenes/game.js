@@ -12,7 +12,7 @@ export class GameScene extends BaseScene {
 
     this.ticker = new Ticker();
 
-    const readyRender = new Text({
+    this.readyRender = new Text({
       text: 'Ready...',
       anchor: {
         x: 0.5,
@@ -29,7 +29,7 @@ export class GameScene extends BaseScene {
     });
 
     this.score = 0;
-    const scoreRender = new Text({
+    this.scoreRender = new Text({
       text: '0',
       anchor: {
         x: 1,
@@ -57,8 +57,8 @@ export class GameScene extends BaseScene {
     this.projectileObjects.forEach((projectile) => {
       this.addChild(projectile);
     });
-    this.addChild(scoreRender);
-    this.addChild(readyRender);
+    this.addChild(this.scoreRender);
+    this.addChild(this.readyRender);
 
     this.update = (timer) => {
       // Projectile movement
@@ -107,21 +107,20 @@ export class GameScene extends BaseScene {
       }
 
       this.score += 10 * timer.deltaTime;
-      scoreRender.text = Math.floor(this.score);
+      this.scoreRender.text = Math.floor(this.score);
     };
+  }
 
+  onEnter() {
     setTimeout(() => {
-      readyRender.text = 'Go!';
+      this.readyRender.text = 'Go!';
     }, 700);
-
     setTimeout(() => {
-      this.removeChild(readyRender);
+      this.removeChild(this.readyRender);
       this.ticker.add(this.update);
       this.ticker.start();
     }, 1500);
   }
-
-  onEnter() {}
 
   onExit() {
     this.ticker.stop();
