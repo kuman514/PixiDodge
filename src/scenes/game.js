@@ -6,14 +6,27 @@ import { SceneManager } from '^/core/scene/manager';
 import { PlayerObject } from '^/objects/player';
 import { ProjectileObject } from '^/objects/projectile';
 
-/**
- * @todo
- * Implement game
- */
-
 export class GameScene extends BaseScene {
   constructor() {
     super();
+
+    this.ticker = new Ticker();
+
+    const readyRender = new Text({
+      text: 'Ready...',
+      anchor: {
+        x: 0.5,
+        y: 0.5,
+      },
+      style: {
+        fontFamily: 'Arial',
+        fontSize: 18,
+        fill: 0xffffff,
+        align: 'center',
+      },
+      x: 0,
+      y: 0,
+    });
 
     this.score = 0;
     const scoreRender = new Text({
@@ -45,6 +58,7 @@ export class GameScene extends BaseScene {
       this.addChild(projectile);
     });
     this.addChild(scoreRender);
+    this.addChild(readyRender);
 
     this.update = (timer) => {
       // Projectile movement
@@ -84,18 +98,27 @@ export class GameScene extends BaseScene {
       );
 
       if (isCollided) {
-        new SceneManager().changeScene(
-          new GameOverScene(Math.floor(this.score))
-        );
+        this.ticker.stop();
+        setTimeout(() => {
+          new SceneManager().changeScene(
+            new GameOverScene(Math.floor(this.score))
+          );
+        }, 1000);
       }
 
       this.score += 10 * timer.deltaTime;
       scoreRender.text = Math.floor(this.score);
     };
 
-    this.ticker = new Ticker();
-    this.ticker.add(this.update);
-    this.ticker.start();
+    setTimeout(() => {
+      readyRender.text = 'Go!';
+    }, 700);
+
+    setTimeout(() => {
+      this.removeChild(readyRender);
+      this.ticker.add(this.update);
+      this.ticker.start();
+    }, 1500);
   }
 
   onEnter() {}
